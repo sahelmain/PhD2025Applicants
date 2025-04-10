@@ -5,11 +5,343 @@
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Top navigation bar */
+        .top-nav {
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            flex-wrap: wrap;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4E79A7;
+            padding: 15px 0;
+            white-space: nowrap;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+        
+        .nav-link {
+            color: #aaa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 8px;
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 15px 0;
+        }
+        
+        /* Main content */
+        .main-content {
+            margin-top: 60px;
+            padding: 40px 20px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-out;
+            }
+            
+            .nav-links.active {
+                display: flex;
+                max-height: 500px;
+                padding: 10px 0;
+            }
+            
+            .nav-link {
+                padding: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .top-nav {
+                flex-wrap: wrap;
+                padding: 0 20px;
+            }
+            
+            .nav-logo {
+                flex: 1;
+            }
+        }
+        
+        /* Other existing styles */
+        .title-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .dashboard-subtitle {
+            font-size: 1.2rem;
+            color: #bbdefb;
+            margin-bottom: 30px;
+        }
+        
+        .stats-highlights {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+            margin: 0 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4fc3f7;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #b3e5fc;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #4E79A7;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        
+        .description {
+            margin-bottom: 25px;
+            color: #aaa;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .plot-container {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #2d2d2d;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        
+        .plot-container:hover {
+            transform: scale(1.01);
+        }
+        
+        h3 {
+            color: #F28E2B;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 1.4rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #4E79A7;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+        
+        footer {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+        }
+        
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Light theme */
+        body.light-theme {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        body.light-theme .top-nav {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        body.light-theme .nav-link {
+            color: #666;
+        }
+        
+        body.light-theme .nav-link:hover {
+            color: #333;
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        body.light-theme .section {
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        body.light-theme .plot-container {
+            background-color: #f0f0f0;
+        }
+        
+        body.light-theme h2 {
+            border-bottom-color: #ddd;
+        }
+        
+        body.light-theme .description {
+            color: #666;
+        }
+        
+        body.light-theme .stat-item {
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        body.light-theme .title-container {
+            background: linear-gradient(135deg, #4E79A7 0%, #6E99C7 100%);
+        }
+    </style>
 </head>
 <body>
     <nav class="top-nav">
         <div class="nav-logo">PhD Data Explorer</div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
         <div class="nav-links">
             <a href="#demographics" class="nav-link">Demographics</a>
             <a href="#academics" class="nav-link">Academics</a>
@@ -19,6 +351,10 @@
             <a href="#advanced" class="nav-link">Advanced</a>
         </div>
     </nav>
+    
+    <div class="theme-toggle" title="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </div>
     
     <div class="main-content">
         <div class="title-container">
@@ -126,6 +462,24 @@
                 <h3>3D Visualization: GPA, Verbal, and Quantitative Scores</h3>
                 <div id="3d-plot"></div>
                 <p class="description">This 3D scatter plot shows the relationship between GPA, GRE Verbal, and GRE Quantitative scores. Drag to rotate the view and explore from different angles.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Correlation Heatmap</h3>
+                <div id="correlation-plot"></div>
+                <p class="description">This heatmap shows the strength of correlations between different metrics in the dataset. Darker colors indicate stronger correlations.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Country Performance Radar Chart</h3>
+                <div id="radar-plot"></div>
+                <p class="description">This radar chart compares the average performance of applicants from different countries across multiple metrics.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Subject Areas by Country (Sunburst Chart)</h3>
+                <div id="sunburst-plot"></div>
+                <p class="description">This hierarchical visualization shows the distribution of subject areas within each country. Click on segments to zoom in and explore.</p>
             </div>
         </div>
         
@@ -510,6 +864,237 @@
             };
             
             Plotly.newPlot('3d-plot', data3d, layout3d);
+            
+            // Correlation Heatmap
+            var correlationData = [{
+                z: [
+                    [1.0, 0.35, 0.42, 0.28, 0.18],
+                    [0.35, 1.0, 0.65, 0.31, 0.12],
+                    [0.42, 0.65, 1.0, 0.52, 0.22],
+                    [0.28, 0.31, 0.52, 1.0, 0.45],
+                    [0.18, 0.12, 0.22, 0.45, 1.0]
+                ],
+                x: ['GPA', 'GRE Verbal', 'GRE Quant', 'IELTS', 'Experience'],
+                y: ['GPA', 'GRE Verbal', 'GRE Quant', 'IELTS', 'Experience'],
+                type: 'heatmap',
+                colorscale: 'Viridis',
+                showscale: true,
+                colorbar: {
+                    title: 'Correlation'
+                },
+                hovertemplate: 'Correlation between %{x} and %{y}: %{z:.2f}<extra></extra>'
+            }];
+            
+            var correlationLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                title: {
+                    text: 'Correlation Matrix',
+                    font: {
+                        size: 16,
+                        color: '#e0e0e0'
+                    }
+                },
+                margin: {
+                    l: 100,
+                    r: 20,
+                    b: 100,
+                    t: 50,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('correlation-plot', correlationData, correlationLayout);
+            
+            // Radar Chart for Country Performance
+            var radarData = [
+                {
+                    type: 'scatterpolar',
+                    r: [3.55, 7.2, 155, 162, 4.3],
+                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
+                    fill: 'toself',
+                    name: 'Bangladesh',
+                    line: {
+                        color: '#4E79A7'
+                    }
+                },
+                {
+                    type: 'scatterpolar',
+                    r: [3.21, 6.5, 146, 170, 3.2],
+                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
+                    fill: 'toself',
+                    name: 'China',
+                    line: {
+                        color: '#F28E2B'
+                    }
+                },
+                {
+                    type: 'scatterpolar',
+                    r: [3.08, 7.0, 158, 167, 2.8],
+                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
+                    fill: 'toself',
+                    name: 'Iran',
+                    line: {
+                        color: '#59A14F'
+                    }
+                },
+                {
+                    type: 'scatterpolar',
+                    r: [3.42, 7.5, 152, 163, 5.1],
+                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
+                    fill: 'toself',
+                    name: 'India',
+                    line: {
+                        color: '#E15759'
+                    }
+                }
+            ];
+            
+            var radarLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                polar: {
+                    radialaxis: {
+                        visible: true,
+                        range: [0, 180]
+                    }
+                },
+                showlegend: true,
+                legend: {
+                    font: {
+                        color: '#e0e0e0'
+                    }
+                },
+                margin: {
+                    l: 80,
+                    r: 80,
+                    b: 80,
+                    t: 50,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('radar-plot', radarData, radarLayout);
+            
+            // Sunburst Chart for Subject Areas by Country
+            var sunburstData = [{
+                type: 'sunburst',
+                labels: [
+                    'All Countries', 
+                    'Bangladesh', 'China', 'Iran', 'India', 'Others',
+                    'CS & Eng', 'EE', 'CS', 'CE', 'AI & ML',
+                    'CS & Eng', 'Data Science', 'EE', 'Physics', 'Math',
+                    'CS & Eng', 'EE', 'CS Networks', 'AI', 'CE',
+                    'CS & Eng', 'ECE', 'AI & ML', 'Physics', 'Software Eng',
+                    'CS & Eng', 'ECE', 'CE', 'Software Eng', 'Other'
+                ],
+                parents: [
+                    '', 
+                    'All Countries', 'All Countries', 'All Countries', 'All Countries', 'All Countries',
+                    'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh',
+                    'China', 'China', 'China', 'China', 'China',
+                    'Iran', 'Iran', 'Iran', 'Iran', 'Iran',
+                    'India', 'India', 'India', 'India', 'India',
+                    'Others', 'Others', 'Others', 'Others', 'Others'
+                ],
+                values: [
+                    100,
+                    30, 20, 10, 8, 32,
+                    15, 6, 5, 3, 1,
+                    8, 5, 4, 2, 1,
+                    4, 3, 1, 1, 1,
+                    3, 2, 1, 1, 1,
+                    12, 8, 6, 4, 2
+                ],
+                branchvalues: 'total',
+                hovertemplate: '%{label}<br>Count: %{value}<br>Percentage: %{percentEntry:.1%}<extra></extra>',
+                textinfo: 'label+percent entry',
+                maxdepth: 2,
+                insidetextorientation: 'radial'
+            }];
+            
+            var sunburstLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                margin: {
+                    l: 0,
+                    r: 0,
+                    b: 0,
+                    t: 0,
+                    pad: 4
+                },
+                font: {
+                    color: '#e0e0e0'
+                }
+            };
+            
+            Plotly.newPlot('sunburst-plot', sunburstData, sunburstLayout);
+            
+            // Mobile menu toggle
+            $('.menu-toggle').click(function() {
+                $('.nav-links').toggleClass('active');
+            });
+            
+            // Theme toggle functionality
+            $('.theme-toggle').click(function() {
+                $('body').toggleClass('light-theme');
+                
+                if ($('body').hasClass('light-theme')) {
+                    $('.theme-toggle i').removeClass('fa-moon').addClass('fa-sun');
+                    
+                    // Update Plotly colors for light theme
+                    updatePlotlyTheme('light');
+                } else {
+                    $('.theme-toggle i').removeClass('fa-sun').addClass('fa-moon');
+                    
+                    // Update Plotly colors for dark theme
+                    updatePlotlyTheme('dark');
+                }
+            });
+            
+            // Function to update Plotly theme
+            function updatePlotlyTheme(theme) {
+                const plotIds = [
+                    'citizenship-plot', 'student-type-plot', 'gpa-plot', 'test-type-plot',
+                    'gpa-vs-score-plot', 'country-gpa-plot', '3d-plot', 'correlation-plot',
+                    'radar-plot', 'sunburst-plot'
+                ];
+                
+                const bgColor = theme === 'light' ? 'rgba(255,255,255,0)' : 'rgba(0,0,0,0)';
+                const textColor = theme === 'light' ? '#333' : '#e0e0e0';
+                const gridColor = theme === 'light' ? '#ddd' : 'grey';
+                
+                plotIds.forEach(id => {
+                    if (document.getElementById(id) && document.getElementById(id).layout) {
+                        const update = {
+                            paper_bgcolor: bgColor,
+                            plot_bgcolor: bgColor,
+                            font: { color: textColor }
+                        };
+                        
+                        // Special case for 3D plot
+                        if (id === '3d-plot') {
+                            update.scene = {
+                                xaxis: { gridcolor: gridColor, titlefont: { color: textColor } },
+                                yaxis: { gridcolor: gridColor, titlefont: { color: textColor } },
+                                zaxis: { gridcolor: gridColor, titlefont: { color: textColor } }
+                            };
+                        } else {
+                            // Regular 2D plots
+                            update.xaxis = { gridcolor: gridColor, zerolinecolor: gridColor };
+                            update.yaxis = { gridcolor: gridColor, zerolinecolor: gridColor };
+                        }
+                        
+                        Plotly.relayout(id, update);
+                    }
+                });
+            }
         });
     </script>
 </body>
