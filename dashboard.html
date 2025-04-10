@@ -343,12 +343,12 @@
             <i class="fas fa-bars"></i>
         </div>
         <div class="nav-links">
+            <a href="#advanced" class="nav-link">Advanced</a>
             <a href="#demographics" class="nav-link">Demographics</a>
             <a href="#academics" class="nav-link">Academics</a>
             <a href="#tests" class="nav-link">Test Scores</a>
             <a href="#relationships" class="nav-link">Relationships</a>
             <a href="#countries" class="nav-link">Countries</a>
-            <a href="#advanced" class="nav-link">Advanced</a>
         </div>
     </nav>
     
@@ -378,6 +378,31 @@
                     <div class="stat-value">7.1</div>
                     <div class="stat-label">Average IELTS</div>
                 </div>
+            </div>
+        </div>
+        
+        <div id="advanced" class="section">
+            <h2>Advanced Analysis</h2>
+            <div class="description">
+                <p>These advanced interactive visualizations provide deeper insights into the PhD applicant data through multidimensional and machine learning analysis.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Machine Learning Clusters</h3>
+                <div id="cluster-plot"></div>
+                <p class="description">Applicant clusters based on academic metrics, showing distinct groups of candidates.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>3D Score Visualization</h3>
+                <div id="3d-plot"></div>
+                <p class="description">3D visualization showing relationships between GPA, GRE Verbal, and GRE Quantitative scores.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Parallel Coordinates Analysis</h3>
+                <div id="parallel-plot"></div>
+                <p class="description">Multi-dimensional analysis of applicant metrics, showing patterns across different measures.</p>
             </div>
         </div>
         
@@ -449,37 +474,6 @@
                 <h3>GPA Comparison by Country</h3>
                 <div id="country-gpa-plot"></div>
                 <p class="description">This box plot compares the distribution of GPAs among applicants from the top countries.</p>
-            </div>
-        </div>
-        
-        <div id="advanced" class="section">
-            <h2>6. Advanced Visualizations</h2>
-            <div class="description">
-                <p>These advanced interactive visualizations provide deeper insights into the PhD applicant data.</p>
-            </div>
-            
-            <div class="plot-container">
-                <h3>3D Visualization: GPA, Verbal, and Quantitative Scores</h3>
-                <div id="3d-plot"></div>
-                <p class="description">This 3D scatter plot shows the relationship between GPA, GRE Verbal, and GRE Quantitative scores. Drag to rotate the view and explore from different angles.</p>
-            </div>
-            
-            <div class="plot-container">
-                <h3>Correlation Heatmap</h3>
-                <div id="correlation-plot"></div>
-                <p class="description">This heatmap shows the strength of correlations between different metrics in the dataset. Darker colors indicate stronger correlations.</p>
-            </div>
-            
-            <div class="plot-container">
-                <h3>Country Performance Radar Chart</h3>
-                <div id="radar-plot"></div>
-                <p class="description">This radar chart compares the average performance of applicants from different countries across multiple metrics.</p>
-            </div>
-            
-            <div class="plot-container">
-                <h3>Subject Areas by Country (Sunburst Chart)</h3>
-                <div id="sunburst-plot"></div>
-                <p class="description">This hierarchical visualization shows the distribution of subject areas within each country. Click on segments to zoom in and explore.</p>
             </div>
         </div>
         
