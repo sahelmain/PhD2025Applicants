@@ -90,6 +90,45 @@
             </div>
         </div>
         
+        <div id="relationships" class="section">
+            <h2>4. Relationship Analysis</h2>
+            <div class="description">
+                <p>These scatter plots explore relationships between different metrics in the application data.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>GPA vs. Test Scores</h3>
+                <div id="gpa-vs-score-plot"></div>
+                <p class="description">This scatter plot shows the relationship between applicants' GPA and their English proficiency test scores.</p>
+            </div>
+        </div>
+        
+        <div id="countries" class="section">
+            <h2>5. Country Comparisons</h2>
+            <div class="description">
+                <p>These visualizations compare academic metrics across the top countries represented in the applicant pool.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>GPA Comparison by Country</h3>
+                <div id="country-gpa-plot"></div>
+                <p class="description">This box plot compares the distribution of GPAs among applicants from the top countries.</p>
+            </div>
+        </div>
+        
+        <div id="advanced" class="section">
+            <h2>6. Advanced Visualizations</h2>
+            <div class="description">
+                <p>These advanced interactive visualizations provide deeper insights into the PhD applicant data.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>3D Visualization: GPA, Verbal, and Quantitative Scores</h3>
+                <div id="3d-plot"></div>
+                <p class="description">This 3D scatter plot shows the relationship between GPA, GRE Verbal, and GRE Quantitative scores. Drag to rotate the view and explore from different angles.</p>
+            </div>
+        </div>
+        
         <div id="conclusion" class="section">
             <h2>Conclusion</h2>
             <div class="description">
@@ -273,6 +312,204 @@
             };
             
             Plotly.newPlot('test-type-plot', testTypeData, testTypeLayout);
+            
+            // GPA vs Test Scores scatter plot
+            var gpaValues = [3.8, 3.2, 3.5, 3.9, 2.8, 3.1, 3.6, 3.3, 2.9, 3.7, 3.4, 3.0, 3.8, 3.1, 3.5, 3.2, 3.6, 3.9, 3.4, 3.0];
+            var testScores = [7.5, 6.5, 7.0, 8.0, 6.0, 6.5, 7.5, 7.0, 6.5, 7.5, 7.0, 6.5, 8.0, 6.5, 7.0, 6.5, 7.5, 8.0, 7.0, 6.5];
+            var countries = ['Bangladesh', 'China', 'Iran', 'India', 'China', 'Bangladesh', 'India', 'Iran', 'China', 'Bangladesh', 
+                           'Nepal', 'China', 'Bangladesh', 'Iran', 'India', 'Bangladesh', 'China', 'Bangladesh', 'Nepal', 'Iran'];
+            
+            var gpaVsScoreData = [{
+                x: gpaValues,
+                y: testScores,
+                mode: 'markers',
+                type: 'scatter',
+                marker: {
+                    size: 12,
+                    color: gpaValues,
+                    colorscale: 'Viridis',
+                    showscale: true,
+                    colorbar: {
+                        title: 'GPA'
+                    }
+                },
+                text: countries,
+                hovertemplate: 'GPA: %{x}<br>IELTS: %{y}<br>Country: %{text}<extra></extra>'
+            }];
+            
+            var gpaVsScoreLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                xaxis: {
+                    title: 'GPA',
+                    range: [2.5, 4.0]
+                },
+                yaxis: {
+                    title: 'IELTS Score',
+                    range: [5.5, 8.5]
+                },
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 50,
+                    t: 30,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('gpa-vs-score-plot', gpaVsScoreData, gpaVsScoreLayout);
+            
+            // Country GPA comparison box plot
+            var bangladeshGPAs = [3.29, 3.38, 3.69, 3.81, 3.42, 3.18, 3.67, 3.45, 3.92, 3.60, 3.97, 3.02, 3.68, 3.87, 3.64];
+            var chinaGPAs = [2.52, 2.98, 3.47, 3.29, 3.43, 3.20, 2.89, 2.80, 2.74, 3.20, 3.25];
+            var iranGPAs = [2.95, 2.57, 2.95, 2.97, 3.06, 3.11, 3.43];
+            var indiaGPAs = [3.19, 3.61, 3.35, 3.46, 3.25];
+            var nepalGPAs = [3.40, 3.21, 3.13, 3.36, 3.19, 3.25];
+            
+            var countryGPAData = [
+                {
+                    y: bangladeshGPAs,
+                    type: 'box',
+                    name: 'Bangladesh',
+                    boxpoints: 'all',
+                    jitter: 0.3,
+                    pointpos: -1.8,
+                    marker: {
+                        color: '#4E79A7'
+                    }
+                },
+                {
+                    y: chinaGPAs,
+                    type: 'box',
+                    name: 'China',
+                    boxpoints: 'all',
+                    jitter: 0.3,
+                    pointpos: -1.8,
+                    marker: {
+                        color: '#F28E2B'
+                    }
+                },
+                {
+                    y: iranGPAs,
+                    type: 'box',
+                    name: 'Iran',
+                    boxpoints: 'all',
+                    jitter: 0.3,
+                    pointpos: -1.8,
+                    marker: {
+                        color: '#59A14F'
+                    }
+                },
+                {
+                    y: indiaGPAs,
+                    type: 'box',
+                    name: 'India',
+                    boxpoints: 'all',
+                    jitter: 0.3,
+                    pointpos: -1.8,
+                    marker: {
+                        color: '#E15759'
+                    }
+                },
+                {
+                    y: nepalGPAs,
+                    type: 'box',
+                    name: 'Nepal',
+                    boxpoints: 'all',
+                    jitter: 0.3,
+                    pointpos: -1.8,
+                    marker: {
+                        color: '#76B7B2'
+                    }
+                }
+            ];
+            
+            var countryGPALayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                yaxis: {
+                    title: 'GPA',
+                    range: [2.0, 4.2]
+                },
+                boxmode: 'group',
+                margin: {
+                    l: 50,
+                    r: 30,
+                    b: 60,
+                    t: 30,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('country-gpa-plot', countryGPAData, countryGPALayout);
+            
+            // 3D scatter plot
+            var gpa3d = [3.45, 3.69, 3.21, 3.05, 3.43, 3.19, 3.70, 2.58, 3.33, 3.87, 3.35, 3.53, 3.44, 3.21, 3.19];
+            var verbal3d = [140, 141, 170, 156, 152, 146, 160, 156, 157, 148, 161, 154, 160, 151, 142];
+            var quant3d = [160, 159, 163, 164, 163, 170, 167, 166, 158, 161, 168, 159, 170, 160, 161];
+            var countries3d = ['Bangladesh', 'Bangladesh', 'Nepal', 'Nigeria', 'India', 'China', 'Iran', 'Iran', 'Bangladesh', 'Bangladesh', 'Iran', 'Bangladesh', 'Iran', 'Bangladesh', 'Bangladesh'];
+            
+            var data3d = [{
+                x: gpa3d,
+                y: verbal3d,
+                z: quant3d,
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 8,
+                    color: gpa3d,
+                    colorscale: 'Viridis',
+                    opacity: 0.8,
+                    colorbar: {
+                        title: 'GPA'
+                    }
+                },
+                text: countries3d,
+                hovertemplate: 'GPA: %{x}<br>Verbal: %{y}<br>Quant: %{z}<br>Country: %{text}<extra></extra>'
+            }];
+            
+            var layout3d = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                scene: {
+                    xaxis: {
+                        title: 'GPA',
+                        backgroundcolor: 'rgba(0,0,0,0)',
+                        gridcolor: 'grey',
+                        showbackground: true
+                    },
+                    yaxis: {
+                        title: 'GRE Verbal',
+                        backgroundcolor: 'rgba(0,0,0,0)',
+                        gridcolor: 'grey',
+                        showbackground: true
+                    },
+                    zaxis: {
+                        title: 'GRE Quantitative',
+                        backgroundcolor: 'rgba(0,0,0,0)',
+                        gridcolor: 'grey',
+                        showbackground: true
+                    }
+                },
+                font: {
+                    color: '#e0e0e0'
+                },
+                margin: {
+                    l: 0,
+                    r: 0,
+                    b: 0,
+                    t: 0,
+                    pad: 4
+                },
+                autosize: true
+            };
+            
+            Plotly.newPlot('3d-plot', data3d, layout3d);
         });
     </script>
 </body>
