@@ -160,10 +160,10 @@ clusters = kmeans.fit_predict(scaled_data)
 df['Cluster'] = clusters
 
 # Perform PCA for visualization
-    pca = PCA(n_components=2)
-    pca_result = pca.fit_transform(scaled_data)
-    
-    # Create PCA visualization
+pca = PCA(n_components=2)
+pca_result = pca.fit_transform(scaled_data)
+
+# Create PCA visualization
 cluster_viz_df = pd.DataFrame(data=pca_result, columns=['PC1', 'PC2'])
 cluster_viz_df['Cluster'] = clusters
 
@@ -172,18 +172,18 @@ fig_clusters = px.scatter(
     cluster_viz_df,
     x='PC1',
     y='PC2',
-        color='Cluster',
+    color='Cluster',
     title='Applicant Clusters (PCA)',
     labels={'PC1': 'First Principal Component', 'PC2': 'Second Principal Component'},
     color_discrete_sequence=['#4E79A7', '#F28E2B', '#59A14F']
 )
 
 # Add explained variance ratio to the plot
-    explained_variance = pca.explained_variance_ratio_
+explained_variance = pca.explained_variance_ratio_
 fig_clusters.add_annotation(
     text=f'Explained Variance: PC1 {explained_variance[0]:.2%}, PC2 {explained_variance[1]:.2%}',
     xref='paper', yref='paper',
-                x=0.5, y=1.05,
+    x=0.5, y=1.05,
     showarrow=False
 )
 
@@ -1675,113 +1675,271 @@ except Exception as e:
 logging.info("Analysis script finished.")
 
 def merge_dashboard():
-    """Merge the analysis output with enhancements."""
+    """
+    Merges the machine learning analysis plots into the existing dashboard.
+    This function should be called after the original dashboard has been generated.
+    """
     try:
-        # Read the original content
-        with open('phd_applications_dashboard.html', 'r', encoding='utf-8') as f:
-            content = f.read()
+        # Check if the dashboard file exists
+        if not os.path.exists('phd_applications_dashboard.html'):
+            logging.error("Dashboard file not found")
+            return False
             
-        # Check if sections already exist
-        has_data_table = 'id="data-table"' in content or 'id="applicants-table"' in content
-        has_comparison = 'id="comparison-tool"' in content or 'id="comparison-charts"' in content
+        # Create a backup of the original file
+        backup_file = 'phd_applications_dashboard.html.bak'
+        shutil.copy2('phd_applications_dashboard.html', backup_file)
+        logging.info(f"Created backup at {backup_file}")
         
-        # Only add sections that don't exist
-        enhancements = []
-        if not has_data_table:
-            enhancements.append("""
-            <section id="data-table" class="section">
-                <h2>Interactive Data Table</h2>
-                <div id="tableControls">
-                    <input type="text" id="searchInput" placeholder="Search...">
-                    <select id="filterField">
-                        <option value="all">All Fields</option>
-                        <option value="country">Country</option>
-                        <option value="gpa">GPA</option>
-                        <option value="degree">Degree</option>
-                        <option value="subject">Subject</option>
-                    </select>
-                </div>
-                <table id="applicants-table" class="data-table">
-                    <!-- Table content will be dynamically populated -->
-                </table>
-                <div id="paginationControls">
-                    <button id="prevPage" disabled>Previous</button>
-                    <span id="pageInfo">Page 1</span>
-                    <button id="nextPage">Next</button>
-                </div>
-            </section>
-            """)
+        # Check if we need to rerun the machine learning analysis
+        if 'elbow_curve' not in plots_html or 'cluster_pca' not in plots_html:
+            logging.info("Machine learning plots not found in plots_html dictionary, regenerating...")
             
-        if not has_comparison:
-            enhancements.append("""
-            <section id="comparison-tool" class="section">
-                <h2>Compare Your Profile</h2>
-                <div class="comparison-form">
-                    <div class="comparison-form-group">
-                        <label for="userGPA">Your GPA (4.0 scale):</label>
-                        <input type="number" id="userGPA" min="0" max="4" step="0.01">
-                    </div>
-                    <div class="comparison-form-group">
-                        <label for="userGREV">Your GRE Verbal Score:</label>
-                        <input type="number" id="userGREV" min="130" max="170">
-                    </div>
-                    <div class="comparison-form-group">
-                        <label for="userGREQ">Your GRE Quantitative Score:</label>
-                        <input type="number" id="userGREQ" min="130" max="170">
-                    </div>
-                    <div class="comparison-form-group">
-                        <label for="userEnglishType">English Test Type:</label>
-                        <select id="userEnglishType">
-                            <option value="IELTS">IELTS</option>
-                            <option value="TOEFL">TOEFL</option>
-                            <option value="Duolingo">Duolingo</option>
-                        </select>
-                    </div>
-                    <div class="comparison-form-group">
-                        <label for="userEnglishScore">Your English Test Score:</label>
-                        <input type="number" id="userEnglishScore">
-                    </div>
-                    <div class="comparison-buttons">
-                        <button class="submit-btn" onclick="compareProfile()">Compare</button>
-                        <button class="reset-btn" onclick="resetComparison()">Reset</button>
-                    </div>
-                </div>
-                <div id="comparison-results">
-                    <div id="comparison-charts" class="comparison-charts" style="display: none;">
-                        <div class="comparison-chart" id="gpa-comparison"></div>
-                        <div class="comparison-chart" id="gre-comparison"></div>
-                        <div class="comparison-chart" id="english-comparison"></div>
-                    </div>
-                </div>
-            </section>
-            """)
-            
-        # Insert enhancements before the closing main tag if there are any to add
-        if enhancements:
-            enhanced_content = content.replace('</main>', ''.join(enhancements) + '</main>')
-            
-            # Write the enhanced content back
-            with open('phd_applications_dashboard.html', 'w', encoding='utf-8') as f:
-                f.write(enhanced_content)
+            # Extract features for clustering
+            ml_features = ['GPA', 'Score']  # Basic features everyone should have
+            # Add GRE scores if available
+            if df['Verbal'].notna().sum() > 5 and df['Quantitative'].notna().sum() > 5:
+                ml_features.extend(['Verbal', 'Quantitative'])
                 
-            logging.info("Dashboard merged and enhanced successfully")
+            # Extract data for clustering
+            cluster_df = df[ml_features].copy()
+            
+            # Impute missing values
+            imputer = SimpleImputer(strategy='mean')
+            cluster_data = imputer.fit_transform(cluster_df)
+            
+            # Scale the data for clustering
+            scaler = StandardScaler()
+            scaled_data = scaler.fit_transform(cluster_data)
+            
+            # Determine optimal number of clusters using the Elbow Method
+            inertia = []
+            k_range = range(2, 6)  # Try 2-5 clusters
+            
+            for k in k_range:
+                kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+                kmeans.fit(scaled_data)
+                inertia.append(kmeans.inertia_)
+                
+            # Create elbow curve
+            fig_elbow = px.line(x=list(k_range), y=inertia, 
+                            title='Elbow Method for Optimal k',
+                            labels={'x': 'Number of Clusters (k)', 'y': 'Inertia'},
+                            template='plotly_dark')
+            fig_elbow.update_layout(
+                dragmode='zoom',
+                hoverlabel=dict(bgcolor="rgba(0,0,0,0.8)", font_size=12, font_family="Roboto"),
+                plot_bgcolor='rgba(25,25,25,1)',
+                paper_bgcolor='rgba(25,25,25,0)',
+                margin=dict(l=40, r=40, t=60, b=40),
+                title_font=dict(size=20, color='#F28E2B')
+            )
+            
+            # Apply K-means with the optimal k
+            optimal_k = 3  # Based on elbow method visualization
+            kmeans = KMeans(n_clusters=optimal_k, random_state=42, n_init=10)
+            clusters = kmeans.fit_predict(scaled_data)
+            
+            # Add cluster labels to the original dataframe
+            df['Cluster'] = clusters
+            
+            # Perform PCA for visualization
+            pca = PCA(n_components=2)
+            pca_result = pca.fit_transform(scaled_data)
+            pca_df = pd.DataFrame(data=pca_result, columns=['PCA1', 'PCA2'])
+            pca_df['Cluster'] = clusters
+                
+            # Create PCA visualization
+            fig_pca = px.scatter(
+                pca_df, x='PCA1', y='PCA2', 
+                color='Cluster',
+                color_continuous_scale='viridis',
+                title='PCA: Applicant Clusters',
+                labels={'PCA1': 'Principal Component 1', 'PCA2': 'Principal Component 2'},
+                template='plotly_dark'
+            )
+                
+            # Get the explained variance ratio
+            explained_variance = pca.explained_variance_ratio_
+            fig_pca.update_layout(
+                annotations=[
+                    dict(
+                        x=0.5, y=1.05,
+                        text=f"Explained Variance: PC1 {explained_variance[0]:.2%}, PC2 {explained_variance[1]:.2%}",
+                        showarrow=False,
+                        xref="paper",
+                        yref="paper",
+                        font=dict(size=12)
+                    )
+                ],
+                dragmode='zoom',
+                hoverlabel=dict(bgcolor="rgba(0,0,0,0.8)", font_size=12, font_family="Roboto"),
+                plot_bgcolor='rgba(25,25,25,1)',
+                paper_bgcolor='rgba(25,25,25,0)',
+                margin=dict(l=40, r=40, t=60, b=40),
+                title_font=dict(size=20, color='#F28E2B')
+            )
+            
+            # Create clustered parallel coordinates plot
+            fig_parallel_clusters = go.Figure()
+            for i in range(optimal_k):
+                cluster_data = df[df['Cluster'] == i]
+                dimensions = [dict(range=[df[col].min(), df[col].max()],
+                                  label=col, values=cluster_data[col]) 
+                           for col in ml_features if cluster_data[col].notna().sum() > 0]
+                
+                if dimensions:  # Only add if we have valid dimensions
+                    fig_parallel_clusters.add_trace(
+                        go.Parcoords(
+                            line=dict(color=f'rgb({50 + i*70}, {100 + i*50}, {150 + i*30})'),
+                            dimensions=dimensions,
+                            name=f'Cluster {i}'
+                        )
+                    )
+            
+            fig_parallel_clusters.update_layout(
+                title='Parallel Coordinates Plot by Cluster',
+                plot_bgcolor='rgba(25,25,25,1)',
+                paper_bgcolor='rgba(25,25,25,0)',
+                title_font=dict(size=20, color='#F28E2B'),
+                margin=dict(l=80, r=80, t=80, b=80)
+            )
+            
+            # Create radar chart to compare clusters
+            fig_radar_clusters = go.Figure()
+            
+            # Normalize the features for radar chart
+            radar_features = ml_features.copy()
+            radar_df = df[radar_features].copy()
+            radar_max = radar_df.max()
+            radar_min = radar_df.min()
+            radar_df = (radar_df - radar_min) / (radar_max - radar_min)  # Scale to 0-1
+            
+            # Add application count as a feature
+            radar_df['Application Count'] = 1  # Each row is one application
+            
+            # Create radar chart traces for each cluster
+            for cluster_id in range(optimal_k):
+                cluster_means = radar_df[df['Cluster'] == cluster_id].mean().reset_index()
+                cluster_means.columns = ['Feature', 'Value']
+                
+                fig_radar_clusters.add_trace(go.Scatterpolar(
+                    r=cluster_means['Value'],
+                    theta=cluster_means['Feature'],
+                    fill='toself',
+                    name=f'Cluster {cluster_id}'
+                ))
+            
+            fig_radar_clusters.update_layout(
+                polar=dict(
+                    radialaxis=dict(
+                        visible=True,
+                        range=[0, 1]
+                    )
+                ),
+                title='Cluster Characteristic Comparison',
+                title_font=dict(size=20, color='#F28E2B'),
+                paper_bgcolor='rgba(25,25,25,0)',
+                margin=dict(l=40, r=40, t=60, b=40),
+                legend=dict(
+                    orientation="h",
+                    yanchor="bottom",
+                    y=-0.2,
+                    xanchor="center",
+                    x=0.5
+                )
+            )
+            
+            logging.info(f"Machine Learning Analysis completed. Identified {optimal_k} distinct clusters of applicants.")
+            
+            # Store ML plots in the plots_html dictionary
+            plots_html['elbow_curve'] = fig_elbow.to_html(full_html=False, include_plotlyjs='cdn')
+            plots_html['cluster_pca'] = fig_pca.to_html(full_html=False, include_plotlyjs=False)
+            plots_html['parallel_clusters'] = fig_parallel_clusters.to_html(full_html=False, include_plotlyjs=False)
+            plots_html['radar_clusters'] = fig_radar_clusters.to_html(full_html=False, include_plotlyjs=False)
+        
+        # Read the HTML file
+        with open('phd_applications_dashboard.html', 'r', encoding='utf-8') as f:
+            html_content = f.read()
+            
+        # Check if the machine learning section already exists
+        if 'id="ml-analysis"' in html_content:
+            logging.info("ML section already exists in dashboard")
+        else:
+            # Find where to insert the ML section (before the closing </div> of the container)
+            insert_idx = html_content.rfind('</div>')
+            if insert_idx == -1:
+                logging.error("Could not find position to insert ML section")
+                return False
+                
+            # Create the ML section HTML
+            ml_section = f"""
+            <div id="ml-analysis" class="section">
+                <h2>Advanced Analysis with Machine Learning</h2>
+                <div class="grid">
+                    <div class="plot-container">
+                        <h3>Elbow Method for Optimal Clusters</h3>
+                        {plots_html['elbow_curve']}
+                    </div>
+                    <div class="plot-container">
+                        <h3>Applicant Clusters</h3>
+                        {plots_html['cluster_pca']}
+                    </div>
+                    <div class="plot-container">
+                        <h3>Parallel Coordinates by Cluster</h3>
+                        {plots_html['parallel_clusters']}
+                    </div>
+                    <div class="plot-container">
+                        <h3>Cluster Characteristics</h3>
+                        {plots_html['radar_clusters']}
+                    </div>
+                </div>
+            </div>
+            """
+            
+            # Insert the ML section
+            new_html = html_content[:insert_idx] + ml_section + html_content[insert_idx:]
+            
+            # Add a link to the ML section in the nav bar
+            nav_links_idx = new_html.find('<div class="nav-links">')
+            if nav_links_idx != -1:
+                # Find where the nav links end
+                nav_links_end = new_html.find('</div>', nav_links_idx)
+                if nav_links_end != -1:
+                    # Add the new nav link
+                    ml_nav_link = '<a href="#ml-analysis" class="nav-link">Advanced Analysis</a>'
+                    new_html = new_html[:nav_links_end] + ml_nav_link + new_html[nav_links_end:]
+            
+            # Write the updated HTML
+            with open('phd_applications_dashboard.html', 'w', encoding='utf-8') as f:
+                f.write(new_html)
+                
+            logging.info("Added machine learning section to dashboard")
+            
+        return True
         
     except Exception as e:
-        logging.error(f"Error merging dashboard: {e}")
-        raise
+        logging.error(f"Error merging machine learning plots: {str(e)}")
+        # If there was an error and we have a backup, restore it
+        if os.path.exists(backup_file):
+            shutil.copy2(backup_file, 'phd_applications_dashboard.html')
+            logging.info("Restored dashboard from backup")
+        return False
 
-if __name__ == "__main__":
-    try:
-        # Your existing code here
+# At the end of the script, after generating the original dashboard:
+try:
+    dashboard_html = html_template.format(**plots_html)
+    with open('phd_applications_dashboard.html', 'w', encoding='utf-8') as f:
+        f.write(dashboard_html)
+    logging.info("Interactive dashboard created at 'phd_applications_dashboard.html'")
+    
+    # After creating the dashboard, merge in the ML analysis
+    if merge_dashboard():
+        logging.info("Successfully added machine learning analysis to dashboard")
+    else:
+        logging.error("Failed to add machine learning analysis to dashboard")
         
-        # At the end, after generating the dashboard
-        logging.info("Interactive dashboard with plots saved to 'phd_applications_dashboard.html'")
-        
-        # Call merge_dashboard to check and prevent duplicates
-        merge_dashboard()
-        
-        logging.info("Analysis script finished.")
-    except Exception as e:
-        logging.error(f"Error in main script: {e}")
-        raise
+    print("Analysis completed! Check out the interactive dashboard.")
+except Exception as e:
+    logging.error(f"Error generating dashboard HTML: {str(e)}")
+    print("Failed to generate dashboard. Check the logs for details.")
 # --- End of script --- 

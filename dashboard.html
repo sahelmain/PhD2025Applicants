@@ -349,7 +349,7 @@
             <a href="#tests" class="nav-link">Test Scores</a>
             <a href="#relationships" class="nav-link">Relationships</a>
             <a href="#countries" class="nav-link">Countries</a>
-        </div>
+        <a href="#advanced-analysis" class="nav-link">ML Analysis</a></div>
     </nav>
     
     <div class="theme-toggle" title="Toggle theme">
@@ -403,6 +403,12 @@
                 <h3>Parallel Coordinates Analysis</h3>
                 <div id="parallel-plot"></div>
                 <p class="description">Multi-dimensional analysis of applicant metrics, showing patterns across different measures.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Subject Areas by Country</h3>
+                <div id="sunburst-plot"></div>
+                <p class="description">Hierarchical visualization of subject areas by country, showing distribution of academic backgrounds.</p>
             </div>
         </div>
         
@@ -489,8 +495,37 @@
                     <li>Integration of admission decision data for predictive modeling</li>
                 </ul>
             </div>
+        
+        <div id="advanced-analysis" class="section">
+            <h2>Machine Learning Analysis</h2>
+            <p class="description">In-depth analysis using machine learning techniques to identify patterns and clusters in PhD applicant data.</p>
+            
+            <div class="plot-container">
+                <h3>Optimal Number of Clusters</h3>
+                <div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>                <div id="3301a729-427c-4351-b886-8638f58df6bb" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("3301a729-427c-4351-b886-8638f58df6bb")) {                    Plotly.newPlot(                        "3301a729-427c-4351-b886-8638f58df6bb",                        [{"hovertemplate":"Number of Clusters (k)=%{x}\u003cbr\u003eInertia=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"","orientation":"v","showlegend":false,"x":[2,3,4,5],"xaxis":"x","y":[370.5794441146793,261.9827426364158,206.04900055912447,157.95110333904626],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Number of Clusters (k)"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Inertia"}},"legend":{"tracegroupgap":0},"title":{"text":"Elbow Method for Optimal k","font":{"size":20,"color":"#F28E2B"}},"hoverlabel":{"font":{"size":12,"family":"Roboto"},"bgcolor":"rgba(0,0,0,0.8)"},"margin":{"l":40,"r":40,"t":60,"b":40},"dragmode":"zoom","plot_bgcolor":"rgba(25,25,25,1)","paper_bgcolor":"rgba(25,25,25,0)"},                        {"responsive": true}                    )                };                            </script>        </div>
+                <p class="plot-description">The elbow method helps determine the optimal number of clusters for k-means clustering. The "elbow" point indicates where adding more clusters provides diminishing returns.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Applicant Clusters</h3>
+                <div>                            <div id="7e0cbe46-ca6a-4c76-bb03-165902b352a4" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("7e0cbe46-ca6a-4c76-bb03-165902b352a4")) {                    Plotly.newPlot(                        "7e0cbe46-ca6a-4c76-bb03-165902b352a4",                        [{"hovertemplate":"Principal Component 1=%{x}\u003cbr\u003ePrincipal Component 2=%{y}\u003cbr\u003eCluster=%{marker.color}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":[0,0,1,1,0,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,1,0,0,1,1,0,0,0,1,1,0,0,1,0,0,1,1,0,0,0,2,0,0,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0],"coloraxis":"coloraxis","symbol":"circle"},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":[-0.5210325536281444,-0.10351514041474184,0.9644021448720198,1.2508039186596267,-0.12835042611908515,-0.5210325536281444,-0.562967925945093,-0.21527392608428705,0.9591514506855484,-0.3884270742954447,1.8904746645984223,-1.1667499819410698,2.68051946907171,-0.774067854432011,-0.5458678393324877,-4.954500013626821e-16,-0.9351219454331472,0.1767435069920824,0.3917904281243467,1.2393940562031434,-0.5129220884593113,-0.15745939265220357,1.3234202871806344,0.9839867363898918,-0.6824619107063756,-0.40927376795859965,0.37303773172821464,-0.6742575244234008,-1.521732411395839,0.6167081450112138,0.7670679596261029,1.2165743312901767,-4.954500013626821e-16,2.240847430836387,-1.5158891615582495,0.16967300233303412,-0.15711762342967175,0.0955424112970998,0.11277540157779782,0.3255700865443192,-1.3033440533149578,-0.8897585517077995,1.455857164772415,1.7002344014711448,-0.6250561402059511,-0.37670328316251833,-0.5382612643614989,1.9896152594399887,1.2323395934333252,-0.8109455169114306,-1.154332339088898,1.9649805217114522,-0.004173997597368551,-0.3270327117538317,0.6167081450112138,1.2003373590632813,-1.2412558390541,-0.624680874128856,-0.21920583769053034,-5.247435388690016,-0.8481984454679459,-0.7387677909453415,2.032949851261355,-0.3891209260146897,-0.41738423312743267,-1.3573218024069835,-0.18575619661950976,-0.9972101596940058,2.6654074234115064,0.7533022163851018,-0.2354267680281964,-0.3142398028245647,0.7057596916636737,-1.2207277310330948,-0.25215158856370673,-1.0344630882505204,-0.6948795535585476,-0.7985278740592593,-1.1958924453287516,-0.5811417213526043,-1.1213865882157217,-1.3076512309982968,0.9249218633160988,0.6211590491207526,1.5899667312410362,2.3047215789832434,0.43044350222863875,1.002223227518935,-0.36391037423325134,0.11979063871631798,-1.1710571596244082,-1.0482813035008631,0.1122672318326101,-0.6067733455969813,0.9251496974133576,1.029074074014655,-0.4713619822194577,0.9109025818185995,-0.9475395882853191,-0.9475395882853191,-1.369739445259155,-0.8357808026157739,-0.15318571182342847,1.7044378559131064,0.39096322067271766,1.3120961447328259,-0.15318571182342847,-0.7450540151650784,-0.9556500534541522,-0.30612933765573164,0.20156870556067483,-0.632791339297689,-0.3021974260494884,-0.20285628323211513,-0.7989031401363543,0.02066128810697477,1.4900248525757975,-0.25252685464080177,-0.4632515170506246,2.2405085033545165,-0.15318571182342847],"xaxis":"x","y":[0.15159888962122306,0.10730599999449864,-0.9997198104326221,-0.667079948103606,0.13305078628350148,0.15159888962122306,0.5835845463410508,0.22315753829501167,-0.15042160720578415,-1.7885666542543053,-1.1158510930433896,0.8209633331352962,2.948569081287479,0.8024152297975745,0.1773436759102259,2.3399491744670454e-17,0.5868062527316666,0.07719837230490705,-1.3662951992546772,-0.690973104721486,0.14914488581861907,0.19667527089173267,0.13892055118906269,-0.176166393494787,0.31894000049974125,0.035747351320710614,-0.7752134167828784,1.722762814506778,-2.258469342342633,-0.6392928023865829,0.10823100394720639,-0.7387594179572464,2.3399491744670454e-17,1.11947082040551,-1.5052755639172173,-0.17588664918453195,-0.21373612603002462,-0.48160237826194996,-1.2221074894377395,-1.759168308822914,0.9625596577248114,0.5457350694955586,-0.6653173329858408,1.7686668151577212,0.6479465120635576,0.39049864917352983,0.1932724469888127,0.2607767576565765,-0.43361425638481527,0.45808232128665255,0.8080909399907945,-1.193085451910398,0.004326854838487304,0.33900907659552415,-0.6392928023865829,-1.2442952801781488,0.8981976920023048,0.2649964241191316,-0.1493741603075172,-3.810436791209516,0.49669950072015706,-0.35721533325380833,2.2478173216169566,0.403371042318031,0.03820135512331462,1.0244676196447149,-0.19595572528031488,0.651168218454174,-2.097767216814385,-0.7808891269760982,-0.1444661527023092,-0.056813404493403614,0.2908540044961518,0.8828712950551989,-0.12117537021591036,0.689785397887678,0.3318123936442429,0.4452099281421515,0.8571265087661961,-0.5325208296716202,0.7798921498991875,0.9729780470667092,-0.22210107705942497,1.9005900729715566,-2.0367079449440157,1.3682429044155713,-0.4462069052190614,-0.2546055006247582,-0.005323831915397934,0.5410733778084037,0.8313817224771932,-1.606860174077966,-0.5048931607483489,0.21760438251944333,-0.37712766164824446,-0.3538813864385242,0.10010931704321739,2.4952812617527225,0.5996786458761684,0.5996786458761684,1.037340012789216,0.4838271075756554,0.15879557257250432,-1.077791780464688,0.3314118281541358,-1.3601468184786611,0.15879557257250432,0.40168474110343944,0.6021326496787723,-0.05926740829600763,-3.9327277254474264,0.26745042792173557,0.3132642903065214,0.21028514515050997,0.8281600160865774,-0.02141793145051553,0.35444625180320677,0.2617747177285157,0.09765531324061338,-1.1214949966101146,0.15879557257250432],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Principal Component 1"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Principal Component 2"}},"coloraxis":{"colorbar":{"title":{"text":"Cluster"}},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"legend":{"tracegroupgap":0},"title":{"text":"PCA: Applicant Clusters","font":{"size":20,"color":"#F28E2B"}},"hoverlabel":{"font":{"size":12,"family":"Roboto"},"bgcolor":"rgba(0,0,0,0.8)"},"margin":{"l":40,"r":40,"t":60,"b":40},"annotations":[{"font":{"size":12},"showarrow":false,"text":"Explained Variance: PC1 30.75%, PC2 25.43%","x":0.5,"xref":"paper","y":1.05,"yref":"paper"}],"dragmode":"zoom","plot_bgcolor":"rgba(25,25,25,1)","paper_bgcolor":"rgba(25,25,25,0)"},                        {"responsive": true}                    )                };                            </script>        </div>
+                <p class="plot-description">This scatter plot shows clusters of applicants based on their academic metrics, reduced to 2 dimensions using Principal Component Analysis (PCA).</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Multi-dimensional Analysis by Cluster</h3>
+                <div>                            <div id="22e2be57-3dd5-4555-b242-4f418d33e4bf" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("22e2be57-3dd5-4555-b242-4f418d33e4bf")) {                    Plotly.newPlot(                        "22e2be57-3dd5-4555-b242-4f418d33e4bf",                        [{"dimensions":[{"label":"GPA","range":[1.59,3.98],"values":[3.29,3.38,3.4,3.29,3.75,3.47,3.81,3.92,3.31,null,3.63,3.44,3.29,3.19,3.42,3.2,2.57,3.81,3.18,null,3.45,3.16,3.01,2.8,2.74,3.92,3.6,3.8,3.6,3.33,3.53,3.8,3.3,3.56,3.87,3.38,3.06,3.56,3.35,3.61,3.2,3.97,3.02,3.68,3.06,3.13,3.86,3.08,3.71,3.43,3.52,3.84,3.21,3.78,3.93,3.22,3.17,3.82,3.19,2.78,3.41,3.25,3.58,3.64,3.64,3.98,3.55,3.42,3.42,3.49,3.64,3.13,3.38,3.54,3.46,3.94,3.28,3.5,3.25,3.42]},{"label":"Score","range":[6.0,140.0],"values":[6.5,null,null,6.5,null,null,6.5,null,6.5,null,7.0,61.0,7.0,7.5,6.5,6.5,6.5,7.5,6.5,null,7.0,null,7.5,7.0,6.5,6.5,7.5,null,null,8.5,7.0,6.5,null,null,6.5,7.0,7.5,7.0,8.0,null,6.0,7.0,6.5,7.0,6.5,7.0,7.0,7.0,7.0,6.5,7.0,7.0,7.0,7.0,7.0,6.5,7.0,7.0,7.0,6.5,7.5,6.5,null,7.0,7.0,7.0,7.0,null,null,8.0,6.5,7.5,6.5,null,null,null,null,null,7.0,null]},{"label":"Verbal","range":[135.0,170.0],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,152.0,null,null,null,157.0,140.0,null,141.0,null,null,null,146.0,null,null,null,null,null,null,null,null,null,null,null,null,null,148.0,null,null,null,null,null,null,null,null,null,null,null,null,null,148.0,null,null,161.0,null,null,142.0,null,151.0,null,162.0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},{"label":"Quantitative","range":[4.0,170.0],"values":[null,null,null,null,null,null,null,null,null,null,null,null,null,163.0,null,null,null,158.0,151.0,null,159.0,null,null,null,170.0,null,null,null,null,null,null,null,null,null,null,null,null,null,161.0,null,null,null,null,null,null,null,null,null,null,null,null,null,161.0,null,null,166.0,null,null,161.0,null,160.0,null,170.0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]}],"line":{"color":"rgb(50, 100, 150)"},"name":"Cluster 0","type":"parcoords"},{"dimensions":[{"label":"GPA","range":[1.59,3.98],"values":[2.52,2.98,3.45,3.69,2.7,3.21,2.64,2.95,2.7,3.43,2.8,3.67,2.89,2.95,3.26,3.05,3.61,2.97,3.23,2.64,2.8,2.33,2.89,1.88,2.69,3.85,3.36,1.59,3.11,2.95,3.35,3.93,3.19,3.25,2.68,3.79,2.24,3.01,3.55,2.81]},{"label":"Score","range":[6.0,140.0],"values":[null,92.0,110.0,98.0,110.0,93.0,null,89.0,null,110.0,null,115.0,83.0,83.0,92.0,110.0,106.0,97.0,110.0,110.0,null,null,null,95.0,null,125.0,101.0,6.5,98.0,null,105.0,95.0,88.0,99.0,97.0,101.0,null,125.0,135.0,140.0]},{"label":"Verbal","range":[135.0,170.0],"values":[null,null,null,140.0,null,170.0,151.0,null,156.0,null,null,null,null,160.0,143.0,null,160.0,156.0,null,null,null,null,166.0,null,null,null,null,null,161.0,null,null,null,null,null,null,null,null,135.0,155.0,null]},{"label":"Quantitative","range":[4.0,170.0],"values":[null,null,null,160.0,null,163.0,145.0,null,164.0,null,null,null,null,170.0,161.0,null,167.0,166.0,null,null,null,null,168.0,null,null,null,null,null,168.0,null,null,null,null,null,null,null,null,151.0,156.0,null]}],"line":{"color":"rgb(120, 150, 180)"},"name":"Cluster 1","type":"parcoords"},{"dimensions":[{"label":"GPA","range":[1.59,3.98],"values":[3.41]},{"label":"Score","range":[6.0,140.0],"values":[8.0]},{"label":"Verbal","range":[135.0,170.0],"values":[154.0]},{"label":"Quantitative","range":[4.0,170.0],"values":[4.0]}],"line":{"color":"rgb(190, 200, 210)"},"name":"Cluster 2","type":"parcoords"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Parallel Coordinates Plot by Cluster","font":{"size":20,"color":"#F28E2B"}},"margin":{"l":80,"r":80,"t":80,"b":80},"plot_bgcolor":"rgba(25,25,25,1)","paper_bgcolor":"rgba(25,25,25,0)"},                        {"responsive": true}                    )                };                            </script>        </div>
+                <p class="plot-description">Parallel coordinates plot showing how different clusters compare across multiple dimensions simultaneously.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Cluster Characteristics</h3>
+                <div>                            <div id="122a980a-3cfd-4056-9e8c-30d544541c8c" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("122a980a-3cfd-4056-9e8c-30d544541c8c")) {                    Plotly.newPlot(                        "122a980a-3cfd-4056-9e8c-30d544541c8c",                        [{"fill":"toself","name":"Cluster 0","r":[0.7739512927797447,0.013896037056098818,0.42337662337662335,0.9507119386637459,1.0],"theta":["GPA","Score","Verbal","Quantitative","Application Count"],"type":"scatterpolar"},{"fill":"toself","name":"Cluster 1","r":[0.5961297071129709,0.7060945273631841,0.5547619047619047,0.9492971887550201,1.0],"theta":["GPA","Score","Verbal","Quantitative","Application Count"],"type":"scatterpolar"},{"fill":"toself","name":"Cluster 2","r":[0.7615062761506277,0.014925373134328358,0.5428571428571428,0.0,1.0],"theta":["GPA","Score","Verbal","Quantitative","Application Count"],"type":"scatterpolar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"polar":{"radialaxis":{"visible":true,"range":[0,1]}},"title":{"text":"Cluster Characteristic Comparison","font":{"size":20,"color":"#F28E2B"}},"margin":{"l":40,"r":40,"t":60,"b":40},"legend":{"orientation":"h","yanchor":"bottom","y":-0.2,"xanchor":"center","x":0.5},"paper_bgcolor":"rgba(25,25,25,0)"},                        {"responsive": true}                    )                };                            </script>        </div>
+                <p class="plot-description">Radar chart comparing the average characteristics of each applicant cluster across standardized metrics.</p>
+            </div>
         </div>
-    </div>
+        </div>
     
     <a href="#" class="back-to-top">↑</a>
     
@@ -524,6 +559,218 @@
         
         // Create sample visualizations
         document.addEventListener('DOMContentLoaded', function() {
+            // Machine Learning Cluster Plot
+            const clusterData = [{
+                x: [3.2, 3.5, 2.8, 3.7, 3.1, 3.4, 2.9, 3.6, 3.3],
+                y: [155, 165, 145, 168, 152, 160, 148, 163, 158],
+                mode: 'markers',
+                type: 'scatter',
+                marker: {
+                    size: 12,
+                    color: [0, 1, 2, 0, 1, 2, 1, 0, 2],
+                    colorscale: 'Viridis',
+                    showscale: true,
+                    colorbar: {
+                        title: 'Cluster',
+                        ticktext: ['High Performers', 'Average', 'Needs Review'],
+                        tickvals: [0, 1, 2]
+                    }
+                },
+                text: ['High GPA & GRE', 'Strong GRE', 'Lower Scores', 'Outstanding', 'Average', 'Mixed Profile', 'Needs Review', 'Strong GPA', 'Balanced'],
+                hovertemplate: 'GPA: %{x:.2f}<br>GRE Score: %{y}<br>Profile: %{text}<extra></extra>'
+            }];
+
+            const clusterLayout = {
+                title: {
+                    text: 'Applicant Clusters by Academic Performance',
+                    font: { size: 20, color: '#F28E2B' }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: { color: '#e0e0e0' },
+                xaxis: {
+                    title: 'GPA',
+                    gridcolor: 'rgba(128,128,128,0.2)',
+                    range: [2.5, 4.0]
+                },
+                yaxis: {
+                    title: 'Average GRE Score',
+                    gridcolor: 'rgba(128,128,128,0.2)',
+                    range: [130, 170]
+                },
+                showlegend: false,
+                margin: { l: 60, r: 30, t: 80, b: 60 }
+            };
+            Plotly.newPlot('cluster-plot', clusterData, clusterLayout);
+            
+            // 3D Scatter Plot
+            var gpa3d = [3.45, 3.69, 3.21, 3.05, 3.43, 3.19, 3.70, 2.58, 3.33, 3.87, 3.35, 3.53, 3.44, 3.21, 3.19];
+            var verbal3d = [140, 141, 170, 156, 152, 146, 160, 156, 157, 148, 161, 154, 160, 151, 142];
+            var quant3d = [160, 159, 163, 164, 163, 170, 167, 166, 158, 161, 168, 159, 170, 160, 161];
+            var countries3d = ['Bangladesh', 'Bangladesh', 'Nepal', 'Nigeria', 'India', 'China', 'Iran', 'Iran', 'Bangladesh', 'Bangladesh', 'Iran', 'Bangladesh', 'Iran', 'Bangladesh', 'Bangladesh'];
+            
+            var data3d = [{
+                x: gpa3d,
+                y: verbal3d,
+                z: quant3d,
+                mode: 'markers',
+                type: 'scatter3d',
+                marker: {
+                    size: 8,
+                    color: gpa3d,
+                    colorscale: 'Viridis',
+                    opacity: 0.8,
+                    colorbar: {
+                        title: 'GPA'
+                    }
+                },
+                text: countries3d,
+                hovertemplate: 'GPA: %{x}<br>Verbal: %{y}<br>Quant: %{z}<br>Country: %{text}<extra></extra>'
+            }];
+            
+            var layout3d = {
+                title: {
+                    text: '3D Scores: GPA, GRE Verbal & Quant',
+                    font: { size: 20, color: '#F28E2B' }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                scene: {
+                    xaxis: {
+                        title: 'GPA',
+                        backgroundcolor: 'rgba(0,0,0,0)',
+                        gridcolor: 'grey',
+                        showbackground: true
+                    },
+                    yaxis: {
+                        title: 'GRE Verbal',
+                        backgroundcolor: 'rgba(0,0,0,0)',
+                        gridcolor: 'grey',
+                        showbackground: true
+                    },
+                    zaxis: {
+                        title: 'GRE Quantitative',
+                        backgroundcolor: 'rgba(0,0,0,0)',
+                        gridcolor: 'grey',
+                        showbackground: true
+                    }
+                },
+                font: {
+                    color: '#e0e0e0'
+                },
+                margin: {
+                    l: 0,
+                    r: 0,
+                    b: 0,
+                    t: 40,
+                    pad: 4
+                },
+                autosize: true
+            };
+            Plotly.newPlot('3d-plot', data3d, layout3d);
+            
+            // Parallel Coordinates Plot
+            const parallelData = [{
+                type: 'parcoords',
+                line: {
+                    color: [3.8, 3.5, 3.2, 3.9, 3.1, 3.6, 3.4, 3.7, 3.3, 3.5],
+                    colorscale: 'Viridis',
+                    showscale: true,
+                    cmin: 2.5,
+                    cmax: 4.0,
+                    colorbar: {
+                        title: 'GPA',
+                        tickformat: '.1f'
+                    }
+                },
+                dimensions: [{
+                    label: 'GPA',
+                    values: [3.8, 3.5, 3.2, 3.9, 3.1, 3.6, 3.4, 3.7, 3.3, 3.5],
+                    range: [2.5, 4.0]
+                }, {
+                    label: 'GRE Verbal',
+                    values: [165, 155, 145, 168, 150, 160, 158, 162, 153, 157],
+                    range: [130, 170]
+                }, {
+                    label: 'GRE Quant',
+                    values: [168, 162, 155, 170, 158, 165, 163, 167, 160, 164],
+                    range: [130, 170]
+                }, {
+                    label: 'IELTS',
+                    values: [7.5, 7.0, 6.5, 8.0, 6.5, 7.5, 7.0, 7.5, 7.0, 7.0],
+                    range: [6.0, 9.0]
+                }]
+            }];
+
+            const parallelLayout = {
+                title: {
+                    text: 'Multi-dimensional Analysis of Applicant Metrics',
+                    font: { size: 20, color: '#F28E2B' }
+                },
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0',
+                    size: 12
+                },
+                margin: { l: 80, r: 80, t: 60, b: 40 }
+            };
+            
+            Plotly.newPlot('parallel-plot', parallelData, parallelLayout);
+            
+            // Sunburst Chart for Subject Areas by Country
+            var sunburstData = [{
+                type: 'sunburst',
+                labels: [
+                    'All Countries', 
+                    'Bangladesh', 'China', 'Iran', 'India', 'Others',
+                    'CS & Eng', 'EE', 'CS', 'CE', 'AI & ML',
+                    'CS & Eng', 'Data Science', 'EE', 'Physics', 'Math',
+                    'CS & Eng', 'EE', 'CS Networks', 'AI', 'CE',
+                    'CS & Eng', 'ECE', 'AI & ML', 'Physics', 'Software Eng',
+                    'CS & Eng', 'ECE', 'CE', 'Software Eng', 'Other'
+                ],
+                parents: [
+                    '', 
+                    'All Countries', 'All Countries', 'All Countries', 'All Countries', 'All Countries',
+                    'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh',
+                    'China', 'China', 'China', 'China', 'China',
+                    'Iran', 'Iran', 'Iran', 'Iran', 'Iran',
+                    'India', 'India', 'India', 'India', 'India',
+                    'Others', 'Others', 'Others', 'Others', 'Others'
+                ],
+                values: [
+                    100,
+                    30, 20, 10, 8, 32,
+                    15, 6, 5, 3, 1,
+                    8, 5, 4, 2, 1,
+                    4, 3, 1, 1, 1,
+                    3, 2, 1, 1, 1,
+                    12, 8, 6, 4, 2
+                ],
+                branchvalues: 'total',
+                hovertemplate: '%{label}<br>Count: %{value}<br>Percentage: %{percentEntry:.1%}<extra></extra>',
+                textinfo: 'label+percent entry',
+                maxdepth: 2,
+                insidetextorientation: 'radial'
+            }];
+            
+            var sunburstLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                margin: {
+                    l: 0,
+                    r: 0,
+                    b: 0,
+                    t: 0,
+                    pad: 4
+                },
+                font: {
+                    color: '#e0e0e0'
+                }
+            };
+            
+            Plotly.newPlot('sunburst-plot', sunburstData, sunburstLayout);
+            
             // Sample data
             var countries = ['Bangladesh', 'China', 'Iran', 'India', 'Nepal', 'Pakistan', 'Nigeria', 'Vietnam', 'Other'];
             var countryCounts = [30, 20, 10, 8, 7, 6, 5, 2, 35];
@@ -797,322 +1044,6 @@
             
             Plotly.newPlot('country-gpa-plot', countryGPAData, countryGPALayout);
             
-            // 3D scatter plot
-            var gpa3d = [3.45, 3.69, 3.21, 3.05, 3.43, 3.19, 3.70, 2.58, 3.33, 3.87, 3.35, 3.53, 3.44, 3.21, 3.19];
-            var verbal3d = [140, 141, 170, 156, 152, 146, 160, 156, 157, 148, 161, 154, 160, 151, 142];
-            var quant3d = [160, 159, 163, 164, 163, 170, 167, 166, 158, 161, 168, 159, 170, 160, 161];
-            var countries3d = ['Bangladesh', 'Bangladesh', 'Nepal', 'Nigeria', 'India', 'China', 'Iran', 'Iran', 'Bangladesh', 'Bangladesh', 'Iran', 'Bangladesh', 'Iran', 'Bangladesh', 'Bangladesh'];
-            
-            var data3d = [{
-                x: gpa3d,
-                y: verbal3d,
-                z: quant3d,
-                mode: 'markers',
-                type: 'scatter3d',
-                marker: {
-                    size: 8,
-                    color: gpa3d,
-                    colorscale: 'Viridis',
-                    opacity: 0.8,
-                    colorbar: {
-                        title: 'GPA'
-                    }
-                },
-                text: countries3d,
-                hovertemplate: 'GPA: %{x}<br>Verbal: %{y}<br>Quant: %{z}<br>Country: %{text}<extra></extra>'
-            }];
-            
-            var layout3d = {
-                title: {
-                    text: '3D Scores: GPA, GRE Verbal & Quant',
-                    font: { size: 20, color: '#F28E2B' }
-                },
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                scene: {
-                    xaxis: {
-                        title: 'GPA',
-                        backgroundcolor: 'rgba(0,0,0,0)',
-                        gridcolor: 'grey',
-                        showbackground: true
-                    },
-                    yaxis: {
-                        title: 'GRE Verbal',
-                        backgroundcolor: 'rgba(0,0,0,0)',
-                        gridcolor: 'grey',
-                        showbackground: true
-                    },
-                    zaxis: {
-                        title: 'GRE Quantitative',
-                        backgroundcolor: 'rgba(0,0,0,0)',
-                        gridcolor: 'grey',
-                        showbackground: true
-                    }
-                },
-                font: {
-                    color: '#e0e0e0'
-                },
-                margin: {
-                    l: 0,
-                    r: 0,
-                    b: 0,
-                    t: 40,
-                    pad: 4
-                },
-                autosize: true
-            };
-            Plotly.newPlot('3d-plot', data3d, layout3d);
-            
-            // Correlation Heatmap
-            var correlationData = [{
-                z: [
-                    [1.0, 0.35, 0.42, 0.28, 0.18],
-                    [0.35, 1.0, 0.65, 0.31, 0.12],
-                    [0.42, 0.65, 1.0, 0.52, 0.22],
-                    [0.28, 0.31, 0.52, 1.0, 0.45],
-                    [0.18, 0.12, 0.22, 0.45, 1.0]
-                ],
-                x: ['GPA', 'GRE Verbal', 'GRE Quant', 'IELTS', 'Experience'],
-                y: ['GPA', 'GRE Verbal', 'GRE Quant', 'IELTS', 'Experience'],
-                type: 'heatmap',
-                colorscale: 'Viridis',
-                showscale: true,
-                colorbar: {
-                    title: 'Correlation'
-                },
-                hovertemplate: 'Correlation between %{x} and %{y}: %{z:.2f}<extra></extra>'
-            }];
-            
-            var correlationLayout = {
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: {
-                    color: '#e0e0e0'
-                },
-                title: {
-                    text: 'Correlation Matrix',
-                    font: {
-                        size: 16,
-                        color: '#e0e0e0'
-                    }
-                },
-                margin: {
-                    l: 100,
-                    r: 20,
-                    b: 100,
-                    t: 50,
-                    pad: 4
-                }
-            };
-            
-            Plotly.newPlot('correlation-plot', correlationData, correlationLayout);
-            
-            // Radar Chart for Country Performance
-            var radarData = [
-                {
-                    type: 'scatterpolar',
-                    r: [3.55, 7.2, 155, 162, 4.3],
-                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
-                    fill: 'toself',
-                    name: 'Bangladesh',
-                    line: {
-                        color: '#4E79A7'
-                    }
-                },
-                {
-                    type: 'scatterpolar',
-                    r: [3.21, 6.5, 146, 170, 3.2],
-                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
-                    fill: 'toself',
-                    name: 'China',
-                    line: {
-                        color: '#F28E2B'
-                    }
-                },
-                {
-                    type: 'scatterpolar',
-                    r: [3.08, 7.0, 158, 167, 2.8],
-                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
-                    fill: 'toself',
-                    name: 'Iran',
-                    line: {
-                        color: '#59A14F'
-                    }
-                },
-                {
-                    type: 'scatterpolar',
-                    r: [3.42, 7.5, 152, 163, 5.1],
-                    theta: ['GPA', 'IELTS', 'GRE Verbal', 'GRE Quant', 'Experience (yrs)'],
-                    fill: 'toself',
-                    name: 'India',
-                    line: {
-                        color: '#E15759'
-                    }
-                }
-            ];
-            
-            var radarLayout = {
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: {
-                    color: '#e0e0e0'
-                },
-                polar: {
-                    radialaxis: {
-                        visible: true,
-                        range: [0, 180]
-                    }
-                },
-                showlegend: true,
-                legend: {
-                    font: {
-                        color: '#e0e0e0'
-                    }
-                },
-                margin: {
-                    l: 80,
-                    r: 80,
-                    b: 80,
-                    t: 50,
-                    pad: 4
-                }
-            };
-            
-            Plotly.newPlot('radar-plot', radarData, radarLayout);
-            
-            // Sunburst Chart for Subject Areas by Country
-            var sunburstData = [{
-                type: 'sunburst',
-                labels: [
-                    'All Countries', 
-                    'Bangladesh', 'China', 'Iran', 'India', 'Others',
-                    'CS & Eng', 'EE', 'CS', 'CE', 'AI & ML',
-                    'CS & Eng', 'Data Science', 'EE', 'Physics', 'Math',
-                    'CS & Eng', 'EE', 'CS Networks', 'AI', 'CE',
-                    'CS & Eng', 'ECE', 'AI & ML', 'Physics', 'Software Eng',
-                    'CS & Eng', 'ECE', 'CE', 'Software Eng', 'Other'
-                ],
-                parents: [
-                    '', 
-                    'All Countries', 'All Countries', 'All Countries', 'All Countries', 'All Countries',
-                    'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh', 'Bangladesh',
-                    'China', 'China', 'China', 'China', 'China',
-                    'Iran', 'Iran', 'Iran', 'Iran', 'Iran',
-                    'India', 'India', 'India', 'India', 'India',
-                    'Others', 'Others', 'Others', 'Others', 'Others'
-                ],
-                values: [
-                    100,
-                    30, 20, 10, 8, 32,
-                    15, 6, 5, 3, 1,
-                    8, 5, 4, 2, 1,
-                    4, 3, 1, 1, 1,
-                    3, 2, 1, 1, 1,
-                    12, 8, 6, 4, 2
-                ],
-                branchvalues: 'total',
-                hovertemplate: '%{label}<br>Count: %{value}<br>Percentage: %{percentEntry:.1%}<extra></extra>',
-                textinfo: 'label+percent entry',
-                maxdepth: 2,
-                insidetextorientation: 'radial'
-            }];
-            
-            var sunburstLayout = {
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                margin: {
-                    l: 0,
-                    r: 0,
-                    b: 0,
-                    t: 0,
-                    pad: 4
-                },
-                font: {
-                    color: '#e0e0e0'
-                }
-            };
-            
-            Plotly.newPlot('sunburst-plot', sunburstData, sunburstLayout);
-            
-            // Machine Learning Cluster Plot (Sample)
-            const clusterData = {
-                x: [1, 2, 3, 1.5, 2.5, 3.5, 2, 1, 3], 
-                y: [2, 1, 3, 2.5, 1.5, 3.5, 1, 2.5, 1.5],
-                mode: 'markers',
-                type: 'scatter',
-                marker: {
-                    size: [12, 10, 15, 8, 11, 13, 10, 14, 9],
-                    color: [0, 1, 2, 0, 1, 2, 1, 0, 2], // Cluster labels
-                    colorscale: 'Viridis'
-                }
-            };
-            const clusterLayout = {
-                title: {
-                    text: 'Applicant Clusters (PCA - Sample)',
-                    font: { size: 20, color: '#F28E2B' }
-                },
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: { color: '#e0e0e0' },
-                xaxis: { title: 'Principal Component 1' },
-                yaxis: { title: 'Principal Component 2' }
-            };
-            Plotly.newPlot('cluster-plot', [clusterData], clusterLayout);
-
-            // Initialize data arrays for Parallel Coordinates
-            const gpa_data_parcoords = [3.29, 3.38, 2.52, 2.98, 3.40, 3.29, 3.75, 3.47, 3.45, 3.69, 2.70, 3.81, 3.21, 3.92, 3.31];
-            const verbal_data_parcoords = [140, 141, 170, 156, 152, 146, 160, 156, 157, 148, 161, 154, 160, 151, 142];
-            const quant_data_parcoords = [160, 159, 163, 164, 163, 170, 167, 166, 158, 161, 168, 159, 170, 160, 161];
-            const ielts_data_parcoords = [6.5, 7.0, 6.5, 7.0, 7.5, 6.5, 7.0, 7.5, 8.0, 7.0, 6.5, 7.0, 7.5, 8.0, 6.5];
-
-            // Parallel Coordinates Plot Data
-            const parallelData = [{
-                type: 'parcoords',
-                line: {
-                    color: gpa_data_parcoords,
-                    colorscale: 'Viridis'
-                },
-                dimensions: [{
-                    label: 'GPA',
-                    values: gpa_data_parcoords,
-                    range: [2.0, 4.0]
-                }, {
-                    label: 'GRE Verbal',
-                    values: verbal_data_parcoords,
-                    range: [130, 170]
-                }, {
-                    label: 'GRE Quantitative',
-                    values: quant_data_parcoords,
-                    range: [130, 170]
-                }, {
-                    label: 'IELTS',
-                    values: ielts_data_parcoords,
-                    range: [5.0, 9.0]
-                }]
-            }];
-
-            const parallelLayout = {
-                title: {
-                    text: 'Parallel Coordinates: Applicant Metrics',
-                    font: {
-                        size: 20,
-                        color: '#F28E2B'
-                    }
-                },
-                plot_bgcolor: 'rgba(25,25,25,1)',
-                paper_bgcolor: 'rgba(25,25,25,0)',
-                font: {
-                    color: '#e0e0e0',
-                    size: 12
-                },
-                margin: {
-                    l: 80,
-                    r: 80,
-                    t: 60,
-                    b: 40
-                }
-            };
-            Plotly.newPlot('parallel-plot', parallelData, parallelLayout);
-            
             // Mobile menu toggle
             $('.menu-toggle').click(function() {
                 $('.nav-links').toggleClass('active');
@@ -1140,7 +1071,7 @@
                 const plotIds = [
                     'citizenship-plot', 'student-type-plot', 'gpa-plot', 'test-type-plot',
                     'gpa-vs-score-plot', 'country-gpa-plot', '3d-plot', 'correlation-plot',
-                    'radar-plot', 'sunburst-plot'
+                    'radar-plot', 'sunburst-plot', 'cluster-plot', 'parallel-plot'
                 ];
                 
                 const bgColor = theme === 'light' ? 'rgba(255,255,255,0)' : 'rgba(0,0,0,0)';
