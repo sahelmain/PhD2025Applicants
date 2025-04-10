@@ -1030,6 +1030,86 @@
             
             Plotly.newPlot('sunburst-plot', sunburstData, sunburstLayout);
             
+            // Machine Learning Cluster Plot (Sample)
+            const clusterData = {
+                x: [1, 2, 3, 1.5, 2.5, 3.5, 2, 1, 3], 
+                y: [2, 1, 3, 2.5, 1.5, 3.5, 1, 2.5, 1.5],
+                mode: 'markers',
+                type: 'scatter',
+                marker: {
+                    size: [12, 10, 15, 8, 11, 13, 10, 14, 9],
+                    color: [0, 1, 2, 0, 1, 2, 1, 0, 2], // Cluster labels
+                    colorscale: 'Viridis'
+                }
+            };
+            const clusterLayout = {
+                title: {
+                    text: 'Applicant Clusters (PCA - Sample)',
+                    font: { size: 20, color: '#F28E2B' }
+                },
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: { color: '#e0e0e0' },
+                xaxis: { title: 'Principal Component 1' },
+                yaxis: { title: 'Principal Component 2' }
+            };
+            Plotly.newPlot('cluster-plot', [clusterData], clusterLayout);
+
+            // Initialize data arrays for Parallel Coordinates
+            const gpa_data_parcoords = [3.29, 3.38, 2.52, 2.98, 3.40, 3.29, 3.75, 3.47, 3.45, 3.69, 2.70, 3.81, 3.21, 3.92, 3.31];
+            const verbal_data_parcoords = [140, 141, 170, 156, 152, 146, 160, 156, 157, 148, 161, 154, 160, 151, 142];
+            const quant_data_parcoords = [160, 159, 163, 164, 163, 170, 167, 166, 158, 161, 168, 159, 170, 160, 161];
+            const ielts_data_parcoords = [6.5, 7.0, 6.5, 7.0, 7.5, 6.5, 7.0, 7.5, 8.0, 7.0, 6.5, 7.0, 7.5, 8.0, 6.5];
+
+            // Parallel Coordinates Plot Data
+            const parallelData = [{
+                type: 'parcoords',
+                line: {
+                    color: gpa_data_parcoords,
+                    colorscale: 'Viridis'
+                },
+                dimensions: [{
+                    label: 'GPA',
+                    values: gpa_data_parcoords,
+                    range: [2.0, 4.0]
+                }, {
+                    label: 'GRE Verbal',
+                    values: verbal_data_parcoords,
+                    range: [130, 170]
+                }, {
+                    label: 'GRE Quantitative',
+                    values: quant_data_parcoords,
+                    range: [130, 170]
+                }, {
+                    label: 'IELTS',
+                    values: ielts_data_parcoords,
+                    range: [5.0, 9.0]
+                }]
+            }];
+
+            const parallelLayout = {
+                title: {
+                    text: 'Parallel Coordinates: Applicant Metrics',
+                    font: {
+                        size: 20,
+                        color: '#F28E2B'
+                    }
+                },
+                plot_bgcolor: 'rgba(25,25,25,1)',
+                paper_bgcolor: 'rgba(25,25,25,0)',
+                font: {
+                    color: '#e0e0e0',
+                    size: 12
+                },
+                margin: {
+                    l: 80,
+                    r: 80,
+                    t: 60,
+                    b: 40
+                }
+            };
+            Plotly.newPlot('parallel-plot', parallelData, parallelLayout);
+            
             // Mobile menu toggle
             $('.menu-toggle').click(function() {
                 $('.nav-links').toggleClass('active');
@@ -1089,62 +1169,6 @@
                     }
                 });
             }
-            
-            // Initialize data arrays
-            const gpa_data = [3.29, 3.38, 2.52, 2.98, 3.40, 3.29, 3.75, 3.47, 3.45, 3.69, 2.70, 3.81, 3.21, 3.92, 3.31];
-            const verbal_data = [140, 141, 170, 156, 152, 146, 160, 156, 157, 148, 161, 154, 160, 151, 142];
-            const quant_data = [160, 159, 163, 164, 163, 170, 167, 166, 158, 161, 168, 159, 170, 160, 161];
-            const ielts_data = [6.5, 7.0, 6.5, 7.0, 7.5, 6.5, 7.0, 7.5, 8.0, 7.0, 6.5, 7.0, 7.5, 8.0, 6.5];
-
-            // Parallel Coordinates Plot Data
-            const parallelData = [{
-                type: 'parcoords',
-                line: {
-                    color: gpa_data,
-                    colorscale: 'Viridis'
-                },
-                dimensions: [{
-                    label: 'GPA',
-                    values: gpa_data,
-                    range: [2.0, 4.0]
-                }, {
-                    label: 'GRE Verbal',
-                    values: verbal_data,
-                    range: [130, 170]
-                }, {
-                    label: 'GRE Quantitative',
-                    values: quant_data,
-                    range: [130, 170]
-                }, {
-                    label: 'IELTS',
-                    values: ielts_data,
-                    range: [5.0, 9.0]
-                }]
-            }];
-
-            const parallelLayout = {
-                title: {
-                    text: 'Parallel Coordinates: Applicant Metrics',
-                    font: {
-                        size: 20,
-                        color: '#F28E2B'
-                    }
-                },
-                plot_bgcolor: 'rgba(25,25,25,1)',
-                paper_bgcolor: 'rgba(25,25,25,0)',
-                font: {
-                    color: '#e0e0e0',
-                    size: 12
-                },
-                margin: {
-                    l: 80,
-                    r: 80,
-                    t: 60,
-                    b: 40
-                }
-            };
-
-            Plotly.newPlot('parallel-plot', parallelData, parallelLayout);
         });
     </script>
 </body>
