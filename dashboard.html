@@ -823,6 +823,10 @@
             }];
             
             var layout3d = {
+                title: {
+                    text: '3D Scores: GPA, GRE Verbal & Quant',
+                    font: { size: 20, color: '#F28E2B' }
+                },
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 scene: {
                     xaxis: {
@@ -851,12 +855,11 @@
                     l: 0,
                     r: 0,
                     b: 0,
-                    t: 0,
+                    t: 40,
                     pad: 4
                 },
                 autosize: true
             };
-            
             Plotly.newPlot('3d-plot', data3d, layout3d);
             
             // Correlation Heatmap
