@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PhD Applications Analysis Dashboard</title>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-logo">PhD Data Explorer</div>
+        <div class="nav-links">
+            <a href="#demographics" class="nav-link">Demographics</a>
+            <a href="#academics" class="nav-link">Academics</a>
+            <a href="#tests" class="nav-link">Test Scores</a>
+            <a href="#relationships" class="nav-link">Relationships</a>
+            <a href="#countries" class="nav-link">Countries</a>
+            <a href="#advanced" class="nav-link">Advanced</a>
+        </div>
+    </nav>
+    
+    <div class="main-content">
+        <div class="title-container">
+            <h1 class="dashboard-title">PhD Applications Analysis Dashboard</h1>
+            <p class="dashboard-subtitle">Interactive visualization of PhD application data for the 2025 application cycle</p>
+            
+            <div class="stats-highlights">
+                <div class="stat-item">
+                    <div class="stat-value">123</div>
+                    <div class="stat-label">Total Applicants</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3.42</div>
+                    <div class="stat-label">Average GPA</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7.1</div>
+                    <div class="stat-label">Average IELTS</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="demographics" class="section">
+            <h2>1. Applicant Demographics</h2>
+            <div class="description">
+                <p>These visualizations show the distribution of applicants by country, student type, and applicant type.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Citizenship Distribution</h3>
+                <div id="citizenship-plot"></div>
+                <p class="description">Bangladesh, China, and Iran are the most represented countries in the applicant pool.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>Student Type Distribution</h3>
+                <div id="student-type-plot"></div>
+                <p class="description">Most applicants are new first-time students, with a smaller number of continuing students.</p>
+            </div>
+        </div>
+        
+        <div id="academics" class="section">
+            <h2>2. Academic Qualifications</h2>
+            <div class="description">
+                <p>Explore the academic qualifications of the applicants, including GPAs, degree types, and subject areas.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>GPA Distribution</h3>
+                <div id="gpa-plot"></div>
+                <p class="description">The average GPA among applicants is 3.42, with most applicants having a GPA between 3.0 and 4.0.</p>
+            </div>
+        </div>
+        
+        <div id="tests" class="section">
+            <h2>3. Test Scores</h2>
+            <div class="description">
+                <p>These visualizations show the distribution of English proficiency test types and scores.</p>
+            </div>
+            
+            <div class="plot-container">
+                <h3>English Proficiency Test Types</h3>
+                <div id="test-type-plot"></div>
+                <p class="description">IELTS is the most common English proficiency test among applicants, followed by TOEFL.</p>
+            </div>
+        </div>
+        
+        <div id="conclusion" class="section">
+            <h2>Conclusion</h2>
+            <div class="description">
+                <p>This dashboard provides insights into the demographic, academic, and test performance characteristics of PhD applicants. The analysis reveals patterns in the applicant pool that could inform recruitment and admissions strategies.</p>
+                <p>For further analysis, we could explore:</p>
+                <ul style="margin-left: 20px; line-height: 1.6;">
+                    <li>Patterns in application timing and decision outcomes</li>
+                    <li>More detailed analysis of subject area backgrounds</li>
+                    <li>Multivariate analysis combining various factors</li>
+                    <li>Integration of admission decision data for predictive modeling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <a href="#" class="back-to-top">↑</a>
+    
+    <footer>
+        PhD Applications Analysis Dashboard | Created with Python & Plotly
+    </footer>
+    
+    <script>
+        // Back to top button functionality
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('.back-to-top').addClass('visible');
+            } else {
+                $('.back-to-top').removeClass('visible');
+            }
+        });
+        
+        $('.back-to-top').click(function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 800);
+        });
+        
+        // Smooth scrolling for navigation links
+        $('.nav-link').click(function(e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 70
+            }, 800);
+        });
+        
+        // Create sample visualizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample data
+            var countries = ['Bangladesh', 'China', 'Iran', 'India', 'Nepal', 'Pakistan', 'Nigeria', 'Vietnam', 'Other'];
+            var countryCounts = [30, 20, 10, 8, 7, 6, 5, 2, 35];
+            
+            var studentTypes = ['New First Time', 'Continuing', 'Internal Level Up', 'External Change', 'Former Tech Readmission'];
+            var studentTypeCounts = [80, 20, 10, 8, 5];
+            
+            var gpaRanges = ['2.0-2.5', '2.5-3.0', '3.0-3.5', '3.5-4.0'];
+            var gpaCounts = [10, 25, 45, 43];
+            
+            var testTypes = ['IELTS', 'TOEFL', 'Duolingo', 'Exemption', 'PTE Academic'];
+            var testTypeCounts = [50, 30, 15, 10, 5];
+            
+            // Country distribution
+            var citizenshipData = [{
+                x: countries,
+                y: countryCounts,
+                type: 'bar',
+                marker: {
+                    color: '#4E79A7'
+                }
+            }];
+            
+            var citizenshipLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                xaxis: {
+                    title: 'Country'
+                },
+                yaxis: {
+                    title: 'Number of Applicants'
+                },
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 100,
+                    t: 30,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('citizenship-plot', citizenshipData, citizenshipLayout);
+            
+            // Student type distribution
+            var studentTypeData = [{
+                labels: studentTypes,
+                values: studentTypeCounts,
+                type: 'pie',
+                marker: {
+                    colors: ['#4E79A7', '#F28E2B', '#59A14F', '#E15759', '#76B7B2']
+                },
+                textinfo: "label+percent",
+                insidetextorientation: "radial"
+            }];
+            
+            var studentTypeLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                margin: {
+                    l: 20,
+                    r: 20,
+                    b: 20,
+                    t: 30,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('student-type-plot', studentTypeData, studentTypeLayout);
+            
+            // GPA distribution
+            var gpaData = [{
+                x: gpaRanges,
+                y: gpaCounts,
+                type: 'bar',
+                marker: {
+                    color: '#59A14F'
+                }
+            }];
+            
+            var gpaLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                xaxis: {
+                    title: 'GPA Range'
+                },
+                yaxis: {
+                    title: 'Number of Applicants'
+                },
+                margin: {
+                    l: 50,
+                    r: 50,
+                    b: 100,
+                    t: 30,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('gpa-plot', gpaData, gpaLayout);
+            
+            // Test type distribution
+            var testTypeData = [{
+                labels: testTypes,
+                values: testTypeCounts,
+                type: 'pie',
+                marker: {
+                    colors: ['#4E79A7', '#F28E2B', '#59A14F', '#E15759', '#76B7B2']
+                },
+                textinfo: "label+percent",
+                insidetextorientation: "radial"
+            }];
+            
+            var testTypeLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {
+                    color: '#e0e0e0'
+                },
+                margin: {
+                    l: 20,
+                    r: 20,
+                    b: 20,
+                    t: 30,
+                    pad: 4
+                }
+            };
+            
+            Plotly.newPlot('test-type-plot', testTypeData, testTypeLayout);
+        });
+    </script>
+</body>
+</html> 
